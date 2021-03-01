@@ -1,0 +1,92 @@
+<html>
+<head>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+<style>
+.hand{
+	display: inline-block; 
+	position: absolute;
+}
+</style>
+</head>
+<body style="font-family: 'JetBrains Mono';">
+<div style="position:absolute; background-color: rgb(187, 187, 187) ;right:calc(50% - 125px); text-align: center;  border:2px solid grey; font-size: 40px; width:250px; height:max-content;" 
+	id="date"></div>
+<div style="position:absolute; background-color: rgb(187, 187, 187) ;right:calc(50% - 100px); top:75px; text-align: center;  border:2px solid grey; font-size: 40px; width:200px; height:max-content;"
+	id="time"></div>
+<div class="hand"
+	style="background-color: grey; border-radius: 1000px; top:calc(50% - 115px); right:calc(50% - 115px);  width:230px; height:230px;">
+</div>
+<div class="hand"
+	style="background-color: rgb(180, 180, 180); border-radius: 1000px; top:calc(50% - 110px); right:calc(50% - 110px);  width:220px; height:220px;">
+</div>
+
+<div id="secHand" class="hand"style=" top:calc(50% - 95px); right:calc(50% - 5px);  width:10px; height:190px;">
+<div  style="bottom: 50px; border-radius:100px; display: inline-block; width: 8px; height: 100px; background-color: black;"></div>
+</div>
+<div class="hand"
+	style="background-color: black; border-radius: 1000px; top:calc(50% - 8px); right:calc(50% - 8px);  width:16px; height:16px;">
+</div>
+<div id="minHand" class="hand" style="top:calc(50% - 75px); right:calc(50% - 4px);  width:10px; height:150px;">
+	<div style="bottom: 50px; border-radius:100px; display: inline-block; width: 8px; height: 75; background-color: black;"></div>
+</div>
+<div id="hrHand" class="hand" style="top:calc(50% - 50px); right:calc(50% - 4px);  width:10px; height:100px;">
+	<div style="bottom: 50px; border-radius:100px; display: inline-block; width: 8px; height: 50px; background-color: black;"></div>
+</div>
+
+<script>
+	var secHand = document.getElementById("secHand");
+	var minHand = document.getElementById("minHand");
+	var hrHand = document.getElementById("hrHand");
+	var time = document.getElementById("time");
+	var date = document.getElementById("date");
+	function ticky(){
+		var realtime = new Date();
+		
+		date.innerText =  getDate(realtime.getMonth(),realtime.getFullYear(),realtime.getDay());
+		time.innerText = getTime(realtime.getSeconds(),realtime.getMinutes(),realtime.getHours());
+		secHand.style.transform = 'rotate(' + (realtime.getSeconds() * 6) +  'deg)';
+		minHand.style.transform = 'rotate(' + (realtime.getMinutes() * 6) + 'deg)';
+		hrHand.style.transform = 'rotate(' + (realtime.getHours() * 30) + 'deg)';
+	}
+	function getTime(seconds,minutes,hours){
+		var str = hours + ":" + minutes;
+		if(hours > 12){
+			str += " PM";
+		}else{
+			str += " AM";
+		}
+		
+		return str;
+	}
+	function getDate(month,year,day){
+		var str = day + ' ';
+		const monthNames = ['Jan','Feb','Mar','Apr'];
+		str += monthNames[month] + ' ' + year;
+		return str;
+	}
+	ticky();
+	setInterval(ticky,1000);
+	
+	
+	//add hour Dots
+	for(var i=0;i<12;i++){
+		var dotdiv = document.createElement('div');
+		dotdiv.style = 'position:absolute; display: inline-block; width: 8px; height: 8px; background-color: white; border-radius: 1000px;';
+		dotdiv.style.top = (document.body.clientHeight/2 + Math.sin(i * Math.PI / 6) * 100 - 4) + 'px';
+		dotdiv.style.right = (document.body.clientWidth / 2 + Math.cos(i * Math.PI / 6) * 100 - 4) + 'px';
+		document.body.insertBefore(dotdiv,secHand);
+		//add sec dots
+		//add hour Dots
+		for (var j = 1; j < 5; j++) {
+			var sdotdiv = document.createElement('div');
+			sdotdiv.style = 'position:absolute; display: inline-block; width: 4px; height: 4px; background-color: white; border-radius: 1000px;';
+			sdotdiv.style.top = (document.body.clientHeight / 2 + Math.sin((i * 30 + j * 6) * Math.PI / 180) * 100 - 2) + 'px';
+			sdotdiv.style.right = (document.body.clientWidth / 2 + Math.cos((i * 30 + j * 6) * Math.PI / 180) * 100 - 2) + 'px';
+			document.body.insertBefore(sdotdiv, secHand);
+		}
+	}
+	
+</script>
+</body>
+</html>
