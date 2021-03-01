@@ -1,39 +1,25 @@
 <html>
 <head>
 <link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
-<style>
-.hand{
-	display: inline-block; 
-	position: absolute;
-}
-</style>
 </head>
 <body style="font-family: 'JetBrains Mono';">
-<div style="position:absolute; background-color: rgb(187, 187, 187) ;right:calc(50% - 125px); text-align: center;  border:2px solid grey; font-size: 40px; width:250px; height:max-content;" 
-	id="date"></div>
-<div style="position:absolute; background-color: rgb(187, 187, 187) ;right:calc(50% - 100px); top:75px; text-align: center;  border:2px solid grey; font-size: 40px; width:200px; height:max-content;"
-	id="time"></div>
-<div class="hand"
-	style="background-color: grey; border-radius: 1000px; top:calc(50% - 115px); right:calc(50% - 115px);  width:230px; height:230px;">
-</div>
-<div class="hand"
-	style="background-color: rgb(180, 180, 180); border-radius: 1000px; top:calc(50% - 110px); right:calc(50% - 110px);  width:220px; height:220px;">
-</div>
+<div class="wordBox" id="date"></div>
+<div class="wordBox" id="time" style="top:70px;"></div>
+<div class="outerRound"></div>
+<div class="innerRound"></div>
 
-<div id="secHand" class="hand"style=" top:calc(50% - 95px); right:calc(50% - 5px);  width:10px; height:190px;">
-<div  style="bottom: 50px; border-radius:100px; display: inline-block; width: 8px; height: 100px; background-color: black;"></div>
+<div id="secHand" class="secHand">
+	<div  style="border-radius:100px; bottom: 50px;width: 8px; height: 100px; background-color: black;"></div>
 </div>
-<div class="hand"
-	style="background-color: black; border-radius: 1000px; top:calc(50% - 8px); right:calc(50% - 8px);  width:16px; height:16px;">
+<div id="minHand" class="minHand">
+	<div style="border-radius:100px; bottom: 50px; display: inline-block; width: 8px; height: 75; background-color: black;"></div>
 </div>
-<div id="minHand" class="hand" style="top:calc(50% - 75px); right:calc(50% - 4px);  width:10px; height:150px;">
-	<div style="bottom: 50px; border-radius:100px; display: inline-block; width: 8px; height: 75; background-color: black;"></div>
+<div id="hrHand" class="hrHand">
+	<div style="border-radius:100px;  bottom: 50px; display: inline-block; width: 8px; height: 50px; background-color: black;"></div>
 </div>
-<div id="hrHand" class="hand" style="top:calc(50% - 50px); right:calc(50% - 4px);  width:10px; height:100px;">
-	<div style="bottom: 50px; border-radius:100px; display: inline-block; width: 8px; height: 50px; background-color: black;"></div>
-</div>
-
+<div class="centerDot"></div>
 <script>
 	var secHand = document.getElementById("secHand");
 	var minHand = document.getElementById("minHand");
