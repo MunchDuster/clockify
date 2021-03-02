@@ -1,78 +1,28 @@
 <html>
 <head>
+<title>Clocker</title>
+<link rel="shortcut icon" type="image/x-icon" href="mememan.png" />
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
 </head>
 <body style="font-family: 'JetBrains Mono';">
+<button id="timer">Timer</button>
 <div class="wordBox" id="date"></div>
 <div class="wordBox" id="time" style="top:70px;"></div>
 <div class="outerRound"></div>
 <div class="innerRound"></div>
-
+<div id="dotHolder"></div>
 <div id="secHand" class="secHand">
 	<div  style="border-radius:100px; bottom: 50px;width: 8px; height: 100px; background-color: black;"></div>
 </div>
 <div id="minHand" class="minHand">
-	<div style="border-radius:100px; bottom: 50px; display: inline-block; width: 8px; height: 75; background-color: black;"></div>
+	<div class="minHandInner"></div>
 </div>
 <div id="hrHand" class="hrHand">
-	<div style="border-radius:100px;  bottom: 50px; display: inline-block; width: 8px; height: 50px; background-color: black;"></div>
+	<div class="hrHandInner"></div>
 </div>
 <div class="centerDot"></div>
-<script>
-	var secHand = document.getElementById("secHand");
-	var minHand = document.getElementById("minHand");
-	var hrHand = document.getElementById("hrHand");
-	var time = document.getElementById("time");
-	var date = document.getElementById("date");
-	function ticky(){
-		var realtime = new Date();
-		
-		date.innerText =  getDate(realtime.getMonth(),realtime.getFullYear(),realtime.getDay());
-		time.innerText = getTime(realtime.getSeconds(),realtime.getMinutes(),realtime.getHours());
-		secHand.style.transform = 'rotate(' + (realtime.getSeconds() * 6) +  'deg)';
-		minHand.style.transform = 'rotate(' + (realtime.getMinutes() * 6) + 'deg)';
-		hrHand.style.transform = 'rotate(' + (realtime.getHours() * 30) + 'deg)';
-	}
-	function getTime(seconds,minutes,hours){
-		var str = hours + ":" + minutes;
-		if(hours > 12){
-			str += " PM";
-		}else{
-			str += " AM";
-		}
-		
-		return str;
-	}
-	function getDate(month,year,day){
-		var str = day + ' ';
-		const monthNames = ['Jan','Feb','Mar','Apr'];
-		str += monthNames[month] + ' ' + year;
-		return str;
-	}
-	ticky();
-	setInterval(ticky,1000);
-	
-	
-	//add hour Dots
-	for(var i=0;i<12;i++){
-		var dotdiv = document.createElement('div');
-		dotdiv.style = 'position:absolute; display: inline-block; width: 8px; height: 8px; background-color: white; border-radius: 1000px;';
-		dotdiv.style.top = (document.body.clientHeight/2 + Math.sin(i * Math.PI / 6) * 100 - 4) + 'px';
-		dotdiv.style.right = (document.body.clientWidth / 2 + Math.cos(i * Math.PI / 6) * 100 - 4) + 'px';
-		document.body.insertBefore(dotdiv,secHand);
-		//add sec dots
-		//add hour Dots
-		for (var j = 1; j < 5; j++) {
-			var sdotdiv = document.createElement('div');
-			sdotdiv.style = 'position:absolute; display: inline-block; width: 4px; height: 4px; background-color: white; border-radius: 1000px;';
-			sdotdiv.style.top = (document.body.clientHeight / 2 + Math.sin((i * 30 + j * 6) * Math.PI / 180) * 100 - 2) + 'px';
-			sdotdiv.style.right = (document.body.clientWidth / 2 + Math.cos((i * 30 + j * 6) * Math.PI / 180) * 100 - 2) + 'px';
-			document.body.insertBefore(sdotdiv, secHand);
-		}
-	}
-	
-</script>
+<script src="script.js"></script>
 </body>
 </html>
