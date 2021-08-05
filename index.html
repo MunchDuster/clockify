@@ -7,22 +7,17 @@
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
 </head>
 <body style="font-family: 'JetBrains Mono';">
-<button id="timer">Timer</button>
+<div class="settingsBox">
+	<label for="smoothBox">Smooth: </label><input type="checkbox" id="smoothBox" />
+</div>
 <div class="wordBox" id="date"></div>
 <div class="wordBox" id="time" style="top:70px;"></div>
-<div class="outerRound"></div>
-<div class="innerRound"></div>
-<div id="dotHolder"></div>
-<div id="secHand" class="secHand">
-	<div  style="border-radius:100px; bottom: 50px;width: 8px; height: 100px; background-color: black;"></div>
-</div>
-<div id="minHand" class="minHand">
-	<div class="minHandInner"></div>
-</div>
-<div id="hrHand" class="hrHand">
-	<div class="hrHandInner"></div>
-</div>
-<div class="centerDot"></div>
+<canvas id="canvas" width="300px" height="300px"></canvas>
+
+<audio autoplay loop>
+	<source src="tick.mp3" type="audio/mp3">
+</audio>
+
 <script src="script.js"></script>
 </body>
 </html>
